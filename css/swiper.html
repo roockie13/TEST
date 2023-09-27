@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Яндекс Билеты</title>
+
+    <!--
+    MAIN STYLES
+    -->
+
+    <style>
+
+        @page {
+            size: A4 landscape;
+            padding: 0;
+            margin: 5mm;
+            background-image: url($backgroundImageUrl);
+            background-size: cover;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            color: #000;
+            font-family: "Yandex Sans Text", Arial, "Helvetica Neue", Helvetica, sans-serif;
+            line-height: 1.3;
+            letter-spacing: 1px;
+            -webkit-font-smoothing: antialiased;
+            font-smoothing: antialiased;
+            -webkit-text-rendering: optimizeLegibility;
+            text-rendering: optimizeLegibility;
+            padding: 0;
+            margin: 0;
+        }
+
+        table {
+            border-spacing: 0;
+            border-collapse: collapse;
+            padding: 0;
+            margin: 0;
+        }
+
+        td {
+            padding: 0;
+            margin: 0;
+        }
+
+        h3 {
+            font-size: 16px;
+            font-weight: bold;
+            padding: 0;
+            margin: 0 0 -2px;
+        }
+
+        p {
+            font-size: 11px;
+            line-height: 15px;
+            padding: 9px 0 5px;
+            margin: 0;
+        }
+
+        img {
+
+            display: block;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Base //////////////////////////////////////////////////////////////////////*/
+
+        .bbase {
+            width: 100%;
+            height: 100%;
+            display: block;
+            background: url(https://avatars.mds.yandex.net:443/get-tickets/18495/63f37ff4-37e1-40eb-b492-3c9210babcc8/orig) repeat-y 50% 50%;
+            position: relative;
+        }
+
+        .bbase-column {
+            width: 50%;
+            height: 100%;
+            display: block;
+            position: absolute;
+            top: 0;
+        }
+
+        .bbase-column__left {
+            left: 0;
+        }
+
+        .bbase-column__right {
+            right: 0;
+        }
+
+        .bbase-column_inner {
+            height: 100%;
+            display: block;
+            padding: 0;
+        }
+
+        .bbase-column__left .bbase-column_inner {
+            margin: 0 27px 0 0;
+        }
+
+        .bbase-column__right .bbase-column_inner {
+            margin: 0 0 0 27px;
+        }
+
+        .bbase-column_table {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* The Block /////////////////////////////////////////////////////////////////*/
+
+        .theblocks-group {
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .theblock {
+            font-size: 1em;
+            text-align: left;
+            display: block;
+            padding: 0;
+            margin: 0;
+        }
+
+        .theblock__inline {
+            display: inline-block;
+            vertical-align: top;
+            padding: 24px 0 0;
+            margin: 0 26px 0 0;
+        }
+
+        .theblock__last {
+            margin-right: 0;
+        }
+
+        .theblock__bounded {
+            max-width: 20%;
+        }
+
+        .theblock_caption {
+            margin-top: 70px;
+            margin-bottom: 25px;
+        }
+
+        .theblock_label {
+            color: #999;
+            font-size: 9px;
+            text-transform: uppercase;
+            display: block;
+            padding: 0;
+            margin: 0;
+            padding-top: 5px;
+        }
+
+        .theblock__l .theblock_label {
+            font-size: 11px;
+        }
+
+        .theblock_title {
+            font-size: 13px;
+            font-weight: lighter;
+            display: block;
+            padding: 6px 0;
+            margin: 0;
+        }
+
+        .theblock__m .theblock_title {
+            font-size: 19px;
+            font-weight: bold;
+            padding-bottom: 4px;
+        }
+
+        .theblock__l .theblock_title {
+            font-size: 38px;
+            font-weight: bold;
+            line-height: 1.1;
+            padding-top: 7px;
+            margin-bottom: 5px;
+        }
+
+        .theblock_notes {
+            color: #999;
+            font-size: 10px;
+            display: block;
+            padding: 0;
+            margin: 0;
+        }
+
+        .theblock__m .theblock_notes {
+            font-size: 11px;
+        }
+
+        .theblock__l .theblock_notes {
+            color: #000;
+            font-size: 18px;
+        }
+
+        /* MISC //////////////////////////////////////////////////////////////////////*/
+
+        .logo {
+            height: 34px;
+            display: block;
+            padding: 0;
+            margin: 25px 0 0;
+        }
+
+        .agelimit {
+            float: left;
+            width: 34px;
+            height: 34px;
+            display: block;
+            overflow: hidden;
+            padding: 0;
+            margin: 33px 0 0;
+            position: relative;
+        }
+
+        .agelimit_bg {
+            width: 34px;
+            height: 34px;
+            display: block;
+            padding: 0;
+            margin: 0;
+        }
+
+        .agelimit_text {
+            color: #333;
+            font-size: 12px;
+            font-style: normal;
+            line-height: 34px;
+            text-align: center;
+            width: 34px;
+            height: 34px;
+            display: block;
+            padding: 0;
+            margin: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .row-seat-info {
+            padding: 0;
+            margin: 0 -45px 0 0;
+        }
+
+        .row-order-info {
+            padding: 28px 0 0;
+            margin: 0 -45px 0 0;
+        }
+
+        .barcode-holder {
+            padding: 43px 0 0;
+            margin: 0;
+        }
+
+        .barcode-holder2 {
+            padding: 0;
+            float: right;
+        }
+
+        .barcode {
+            width: 186px;
+            display: block;
+            padding: 0;
+            margin: 0;
+        }
+
+        .barcode-qr {
+            width: 70px;
+            display: block;
+            padding: 0;
+            margin: 0;
+        }
+
+        .barcode__hidden {
+            position: relative;
+            left: -10000px;
+        }
+
+        .barcode__lb {
+        }
+
+        .barcode_inner {
+            background: #fff;
+            border: 5px solid #fff;
+            border-width: 5px 5px 0 5px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
+        .barcode_inner-qr {
+            background: #fff;
+            border: 5px solid #fff;
+            border-width: 5px 5px 0 5px;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        .barcode_number {
+            font-size: 11px;
+            line-height: 18px;
+            text-align: left;
+            display: block;
+            padding: 0;
+            margin: 0;
+        }
+
+        .barcode_number_qr {
+            font-size: 11px;
+            line-height: 18px;
+            text-align: right;
+            display: block;
+            padding: 0;
+            margin: 0;
+        }
+
+        .barcode_inner .barcode_number {
+            padding-bottom: 5px;
+        }
+
+        .barcode_number-item {
+            display: inline-block;
+            padding: 0;
+            margin: 0;
+        }
+
+        .restrictions {
+            padding: 10px 0 0;
+            margin: 0;
+        }
+
+        .restrictions_item {
+            width: 38px;
+            height: 38px;
+            display: inline-block;
+            vertical-align: top;
+            padding: 0;
+            margin: 0 8px 0 0;
+        }
+
+        .partners {
+            font-size: 9px;
+            line-height: 13px;
+            text-align: left;
+            padding: 0;
+            margin: 13px 0 1px;
+        }
+
+        .partners th {
+            vertical-align: top;
+            padding: 0 0 5px;
+        }
+
+        .partners td {
+            padding: 0 16px 0 0;
+        }
+
+        /* Currency */
+
+        .currency {
+
+        }
+
+        .currency_rub {
+            font-family: ALS Rubl;
+        }
+
+        .phone {
+            margin: 0;
+            padding: 0 0 12px;
+        }
+
+        .problems {
+            margin: 0;
+            padding-top: 7px;
+            padding-bottom: 4px;
+        }
+
+
+
+        .ctrl {
+            width: 100%;
+            text-align: left;
+            float: right;
+            display: block;
+            overflow: hidden;
+            padding: 0;
+            margin: 32px 0 34px;
+        }
+
+        .ctrl_label {
+            color: #333;
+            font-size: 15px;
+            line-height: 21px;
+            display: block;
+            padding: 0;
+            margin: 0;
+        }
+
+        .ctrl_line {
+            line-height: 1;
+            white-space: nowrap;
+            height: 20px;
+            overflow: hidden;
+        }
+
+        .ctrl_line-item {
+            width: 5px;
+            height: 1px;
+            display: inline-block;
+            vertical-align: top;
+            overflow: hidden;
+            background: #333;
+            padding: 0;
+            margin: 0 5px 0 0;
+        }
+
+        .eticket {
+            width: 20px;
+            font-size: 14px;
+            padding-top: 30px;
+        }
+
+    </style>
+
+    <!--
+    / MAIN STYLES
+    -->
+
+</head>
+<body>
+
+<div class="bbase">
+
+    <!-- Left column -->
+
+    <div class="bbase-column bbase-column__left">
+        <div class="bbase-column_inner">
+
+            <table class="bbase-column_table">
+
+                <!-- Top -->
+
+                <tr>
+                    <td valign="top">
+                        <img class="logo"
+                             src="$afishaLogoFull" alt=""/>
+                    </td>
+                    <td class="eticket" valign="top" align="right">
+                        <span class="eticket-text">Электронный<br/>билет</span>
+                    </td>
+                </tr>
+
+                <!-- Middle -->
+                <tr>
+                    <td valign="top" colspan="2">
+                        <i class="agelimit">
+                            <img class="agelimit_bg"
+                                 src="https://avatars.mds.yandex.net:443/get-tickets/40458/b20bd88a-6d31-493e-9b85-f273e5c32202/orig"
+                                 alt=""/>
+                            <span class="agelimit_text">$ageLimit+</span>
+                        </i>
+                        <div class="theblock theblock__l theblock_caption">
+                            <div class="theblock_label">$eventType</div>
+
+
+                            #if ($levelName.length() <= 50)
+                                <div class="theblock_title" style="font-size: 38px;">$levelName</div>
+                            #elseif ($levelName.length() <= 110)
+                                <div class="theblock_title" style="font-size: 30px;">$levelName</div>
+                            #elseif ($levelName.length() <= 220)
+                                <div class="theblock_title" style="font-size: 25px;">$levelName</div>
+                            #else
+                                <div class="theblock_title" style="font-size: 21px;">$levelName</div>
+                            #end
+
+                            <div class="theblock_notes"><b>$esc.pdf($extEventName)</b></div>
+
+                            #if ($sessionDate.split(", ")[1] == "06:00")
+                                <div class="theblock_notes">$sessionDate.split(", ")[0]</div>
+                            #else
+                                <div class="theblock_notes">$sessionDate</div>
+                            #end
+
+                            <div style="font-size: 10px; text-transform: none;" class="theblock_label">Настоящий электронный билет не является билетом, представляющим право на посещение мероприятия</div>
+                            
+                            
+
+                            
+                        </div>
+                    </td>
+                </tr>
+
+                <!-- Bottom -->
+
+                <tr>
+                    <td valign="bottom" colspan="2">
+
+                        <div>
+                            <div class="theblock theblock__m">
+                                <div class="theblock_title">$venueName</div>
+                                <div class="theblock_notes">$venueAddress</div>
+                            </div>
+                        </div>
+
+                        <div class="row-seat-info">
+                            #if ($showHallName)
+                                <div class="theblock theblock__inline">
+                                    <div class="theblock_label">Зал</div>
+                                    <div class="theblock_title">$hallName</div>
+                                </div>
+                            #end
+                            #if ($entranceName.isPresent())
+                                <div class="theblock theblock__inline">
+                                    <div class="theblock_label">Подъезд</div>
+                                    <div class="theblock_title">$entranceName.get()</div>
+                                </div>
+                            #end
+                            <div class="theblock theblock__inline">
+                                <div class="theblock_label">Сектор</div>
+                                <div class="theblock_title">$levelName</div>
+                            </div>
+                            #if ($row.isPresent())
+                                <div class="theblock theblock__inline">
+                                    <div class="theblock_label">Ряд</div>
+                                    <div class="theblock_title">$row.get()</div>
+                                </div>
+                            #end
+                            #if ($seat.isPresent())
+                                <div class="theblock theblock__inline theblock__last">
+                                    <div class="theblock_label">Место</div>
+                                    <div class="theblock_title">$seat.get()</div>
+                                </div>
+                            #end
+                        </div>
+
+                        <div class="row-order-info">
+                            <div class="theblock theblock__inline">
+                                <div class="theblock_label">Номер заказа</div>
+                                <div class="theblock_title">$orderNumber</div>
+                            </div>
+                            #if ($userName != '')
+                            <div class="theblock theblock__inline theblock__bounded">
+                                <div class="theblock_label">Покупатель</div>
+                                <div class="theblock_title">$userName</div>
+                            </div>
+                            #end
+                            <div class="theblock theblock__inline">
+                                <div class="theblock_label">Дата заказа</div>
+                                <div class="theblock_title">$orderDate,<br/>$orderTime</div>
+                            </div>
+                            <div class="theblock theblock__inline">
+                                <div class="theblock_label">Цена</div>
+                                <div class="theblock_title">
+                                    $nominalPrice
+                                    <span class="currency">$currencySymbol</span>
+                                </div>
+                            </div>
+                            #if ($serialNumber.isPresent())
+                            <div class="theblock theblock__inline theblock__last">
+                                <div class="theblock_label">Серия и номер билета</div>
+                                <div class="theblock_title">$serialNumber.get()</div>
+                            </div>
+                           #end
+                        </div>
+
+                        <div class="barcode-holder">
+                            <img class="barcode barcode__hidden" src="$barcodeUrl" alt="" />
+                            <div class="barcode_inner">
+                                <img class="barcode barcode__lb" src="$barcodeUrl" alt="" />
+                                <div class="barcode_number">
+                                    $ticketNumber
+                                </div>
+                            </div>
+                        </div>
+                        #if ($paymentWay == "PUSHKIN_CARD")
+                           <div style="position: absolute; bottom: 10px; right: 27px;">
+                             <img  style="width: 130px;" src="https://avatars.mds.yandex.net:443/get-tickets/24260/8a448f77-b98a-4e20-9be2-d3f8bb24fadc/orig"/>
+                           </div>
+                        #end
+                    </td>
+                </tr>
+
+            </table>
+
+        </div>
+    </div>
+
+    <!-- Right column -->
+
+    <div class="bbase-column bbase-column__right">
+        <div class="bbase-column_inner">
+
+            <table class="bbase-column_table">
+                <tr>
+                    <td valign="top">
+                        <table style="float: right;" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td width="50%" valign="top">
+                                    <div class="barcode-holder2">
+                                        <img class="barcode-qr barcode__hidden" src="$qrCodeUrl.get()" alt="" />
+                                        <div class="barcode_inner-qr">
+                                            <img class="barcode-qr" src="$qrCodeUrl.get()" alt="" />
+                                            <div class="barcode_number_qr">
+                                                $ticketNumber
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+
+                        #if ($paymentWay == "PUSHKIN_CARD")
+                            <div style="padding-top: 10px;">
+                               <img  style="width: 130px;" src="https://avatars.mds.yandex.net:443/get-tickets/24260/8a448f77-b98a-4e20-9be2-d3f8bb24fadc/orig"/>
+                            </div>
+                        #end
+
+                        <!-- #if (($withCovidVaccinated == "true") && ($paymentWay == "PUSHKIN_CARD"))
+                            <h3 style="padding-top: 20px;">
+                              COVID-free событие
+                            </h3>
+
+                            <p style="width: 400px;">
+                              На входе понадобятся документы, которые подтверждают защиту от COVID-19. Полную информацию о входе можно уточнить у организатора, а подробности об ограничениях — в Яндекс&nbsp;Справке<br/><span style="color: #1a73e8;"><b>ya.cc/events-qr</b></span>
+                            </p>
+                        #elseif ($withCovidVaccinated == "true")
+                            <h3>
+                              COVID-free событие
+                            </h3>
+
+                            <p style="width: 400px;">
+                              На входе понадобятся документы, которые подтверждают защиту от COVID-19. Полную информацию о входе можно уточнить у организатора, а подробности об ограничениях — в Яндекс&nbsp;Справке<br/><span style="color: #1a73e8;"><b>ya.cc/events-qr</b></span>
+                            </p>
+                        #end -->
+
+                        #if (($withCovidVaccinated == "false") && ($paymentWay == "PUSHKIN_CARD"))
+                            <h3 style="padding-top: 20px;">
+                                Как работает билет
+                            </h3>
+                        #else
+                            <h3 style="padding-top: 5px;">
+                                Как работает билет
+                            </h3>
+                        #end
+
+                        #if ($withCovidVaccinated == "false")
+                            <p style="width: 400px;">
+                                Настоящий электронный билет не является билетом, представляющим право на посещение мероприятия. Не&nbsp;выкладывайте билет в соцсети: другой человек может использовать штрихкод вместо вас
+                            </p>
+                        #else
+                            <p>
+                                Настоящий электронный билет не является билетом, представляющим право на посещение мероприятия. Не&nbsp;выкладывайте билет в соцсети: другой человек может использовать штрихкод вместо вас
+                            </p>
+                        #end
+                        
+                        <h3 style="padding-top: 5px;">Как вернуть</h3>
+                        <p>
+                            Если событие отменят, заменят или перенесут, решение о возврате денег примет организатор. Подробнее о возврате рассказываем на сайте — <span style="color: #1a73e8;"><b>ya.cc/afisha-refund</b></span>
+                        </p>
+
+
+                        <h3 style="padding-top: 5px;">Если только спросить</h3>
+
+                        <p>
+                            Пишите днём и ночью <br/>
+                            <span style="color: #1a73e8;"><b>ya.cc/no-ponyatno</b></span>
+                        </p>
+                        <p>
+                            Или звоните, если вопрос срочный <br/>
+                            8 800 600-90-90 
+                        </p>
+
+
+                        <h3 style="padding-top: 5px;">Это юридический текст, без него никак</h3>
+                        <p>
+                            Билет утверждён приказом Министерства Культуры РФ от 29 июня 2020 года №702
+                        </p>
+
+                        <div class="restrictions">
+                            <img class="restrictions_item" src="https://yastatic.net/ticketier-staticfaction/1.21/Gun.png" alt=""/>
+                            <img class="restrictions_item" src="https://yastatic.net/ticketier-staticfaction/1.21/Knife.png" alt=""/>
+                            <img class="restrictions_item" src="https://yastatic.net/ticketier-staticfaction/1.21/Wineglass.png" alt=""/>
+                            <img class="restrictions_item" src="https://yastatic.net/ticketier-staticfaction/1.21/Camera.png" alt=""/>
+                            <img class="restrictions_item" src="https://yastatic.net/ticketier-staticfaction/1.21/Cigarette.png" alt=""/>
+                            <img class="restrictions_item" src="https://yastatic.net/ticketier-staticfaction/1.21/Bottle.png" alt=""/>
+                        </div>
+                    </td>
+                </tr>
+
+                #if ($paymentWay == "PUSHKIN_CARD")
+                        <div style="position: absolute; left: 30px; top: 550px;">
+                          <img  style="width: 510px; height: 60px;" src="https://avatars.mds.yandex.net:443/get-tickets/17754/31eb0250-02b5-4192-b379-e8d89857a61e/orig"/>
+                        </div>
+                        <div style="position: absolute; left: 55px; top: 560px;">
+                         <table width="450px" border="0">
+                             <tr>
+                                 <td valgin="top">
+                                     <p style="text-align: left; font-size: 15px; padding: 0 0 10px 0;"><b>Не забудьте паспорт!</b></p>
+                                     <p style="text-align: left; font-size: 11px; line-height: 14px; padding: 0;">На входе проверят, чтобы ваше имя совпадало с именем на билете.</p>
+                                 </td>
+                            </tr>
+                         </table>
+                        </div>
+                #end
+
+                #if ($serviceLogoUrl != "")
+                <tr>
+                    <td valign="bottom">
+                        <table class="partners">
+                            <tr>
+                                <th colspan="2">Продавец:</th>
+                                <th>Сервис:</th>
+                                <th>Организатор:</th>
+                            </tr>
+                            <tr>
+                                <td valign="middle">
+                                    <img style="width: 80px;" src="$serviceLogoUrl" alt="" width="10%;" />
+                                </td>
+                                <td valign="top" width="30%;">
+                                        <span>
+                                            $serviceOrganizationInfo
+                                        </span>
+                                </td>
+                                <td valign="top" width="30%;">
+                                        <span>
+                                            $legalEntity
+                                        </span>
+                                </td>
+                                <td valign="top" width="30%">
+                                        <span>
+                                            $supplierInfo
+                                        </span>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </td>
+                </tr>
+                #else
+                <tr>
+                    <td valign="bottom">
+                        <table class="partners">
+                            <tr>
+                                <th>Продавец:</th>
+                                <th>Сервис:</th>
+                                <th>Организатор:</th>
+                            </tr>
+                            <tr>
+                                <td valign="top" width="30%;">
+                                        <span>
+                                           $serviceOrganizationInfo </span>
+                                </td>
+                                <td valign="top" width="30%;">
+                                        <span>
+                                            $legalEntity
+                                        </span>
+                                </td>
+                                <td valign="top" width="30%;">
+                                        <span>
+                                           $supplierInfo
+                                        </span>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </td>
+                </tr>
+                #end
+            </table>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
